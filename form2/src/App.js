@@ -8,6 +8,7 @@ const App = () => {
   let [emailIsValid, setEmailIsValid] = useState(false);
   let [passwordIsValid, setPasswordIsValid] = useState(false);
   let [isSubmitted, setIsSubmitted] = useState(false);
+  let [rememberMe, setRememberMe] = useState(false);
 
   const handleFirstNameChange = (e) => {
     setFirstName((firstName = e.target.value));
@@ -33,75 +34,84 @@ const App = () => {
     const allIsValid = passwordIsValid && emailIsValid;
     setIsSubmitted((isSubmitted = allIsValid));
   };
+  const handleRememberMeChange = (e) => {
+    setRememberMe((rememberMe = e.target.checked));
+  };
 
   return (
-    <section className="">
+    <section className="mb-5 px-5">
       {!isSubmitted ? (
         <>
-          <h1>Form</h1>
+          <h1 className="text-center">Form</h1>
           <form onSubmit={handleSubmit}>
-            <div>
+            <div className="mb-3">
               <label>First Name</label>
               <input
                 type="text"
-                className={`${
+                className={`form-control ${
                   firstName.length > 1 ? "is-valid" : "is-invalid"
                 }`}
                 id="inputFirstName"
                 onChange={handleFirstNameChange}
               ></input>
             </div>
-            <div class="">
+            <div className="mb-3">
               <label htmlFor="inputLastName" className="">
                 Last Name
               </label>
               <input
                 type="text"
-                className={`${lastName.length > 1 ? "is-valid" : "is-invalid"}`}
+                className={`form-control ${
+                  lastName.length > 1 ? "is-valid" : "is-invalid"
+                }`}
                 id="inputLastName"
                 onChange={handleLastNameChange}
               ></input>
             </div>
-            <div class="">
-              <label htmlFor="inputEmail" className="">
+            <div className="mb-4">
+              <label htmlFor="inputEmail" className="form-label">
                 Email address
               </label>
               <input
                 type="email"
-                className={`${emailIsValid ? "is-valid" : "is-invalid"}`}
+                className={`form-control ${
+                  emailIsValid ? "is-valid" : "is-invalid"
+                }`}
                 id="inputEmail"
                 onChange={handleEmailChange}
               ></input>
             </div>
-            <div class="">
-              <label htmlFor="inputPassword" className="">
+            <div class="mb-3">
+              <label htmlFor="inputPassword" className="form-label">
                 Password
               </label>
               <input
                 type="password"
-                className={`${passwordIsValid ? "is-valis" : "is-invalid"}`}
+                className={`form-control ${
+                  passwordIsValid ? "is-valis" : "is-invalid"
+                }`}
                 id="inputPassword"
                 onChange={handlePasswordChange}
               ></input>
             </div>
-            {/* <div class="">
-          <input
-            type="checkbox"
-            className=""
-            id="checkRememberMe"
-            onChange={handleRememberMeChange}
-          ></input>
-          <label className="" htmlFor="checkRememberMe">
-            Remember me
-          </label>
-        </div> */}
-            <button type="submit" className="">
+            <div class="">
+              <input
+                type="checkbox"
+                className="form-check-input"
+                id="checkRememberMe"
+                onChange={handleRememberMeChange}
+              ></input>
+              <label className="" htmlFor="checkRememberMe">
+                Remember me
+              </label>
+            </div>
+            <button type="submit" className="btn btn-primary">
               Submit
             </button>
           </form>
         </>
       ) : (
-        <h1 className="">
+        <h1 className="text-center">
           Félicitations {setFirstName} {setLastName} !!!
         </h1>
       )}
